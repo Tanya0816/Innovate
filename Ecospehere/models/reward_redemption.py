@@ -1,7 +1,6 @@
 from odoo import api, fields, models
 from odoo.exceptions import ValidationError
 
-
 class ESGRewardRedemption(models.Model):
     _name = "esg.reward.redemption"
     _description = "Reward Redemption"
@@ -24,8 +23,8 @@ class ESGRewardRedemption(models.Model):
 
     points_used = fields.Integer(
         string="Points Used",
-        required=True,
         default=0,
+        required=True,
     )
 
     redemption_date = fields.Date(
@@ -36,92 +35,93 @@ class ESGRewardRedemption(models.Model):
 
     status = fields.Selection(
         [
-            ("pending", "Pending"),
-            ("redeemed", "Redeemed"),
-            ("cancelled", "Cancelled"),
+            ("Pending", "Pending"),
+            ("Redeemed", "Redeemed"),
+            ("Cancelled", "Cancelled"),
         ],
-        default="pending",
+        string="Status",
+        default="Pending",
         required=True,
     )
+
+    @api.constrains("points_used")
+    def _check_points_used(self):
+        for record in self:
+            if record.points_used < 0:
+                raise ValidationError("Points used cannot be negative.")
+
+    def _get_available_points(self, employee_id):
+        csr_points = sum(
+            self.env["esg.employee.participation"].search([
+                ("employee_id", "=", employee_id),
+                ("approval_status", "=", "approved"),
+            ]).mapped("points_earned")
+        )
+
+        challenge_points = sum(
+            self.env["esg.challenge.participation"].search([
+                ("employee_id", "=", employee_id),
+                ("approval_status", "=", "Approved"),
+            ]).mapped("points_earned")
+        )
+
+        redeemed_points = sum(
+            self.search([
+                ("employee_id", "=", employee_id),
+                ("status", "=", "Redeemed"),
+            ]).mapped("points_used")
+        )
+
+        return csr_points + challenge_points - redeemed_points
 
     @api.onchange("reward_id")
     def _onchange_reward(self):
         if self.reward_id:
             self.points_used = self.reward_id.points_required
 
-    @api.constrains("points_used")
-    def _check_points_used(self):
-        for record in self:
-            if record.points_used < 0:
-                raise ValidationError(
-                    "Points Used cannot be negative."
-                )
-
-    @api.constrains("employee_id", "reward_id", "points_used")
-    def _check_redemption_rules(self):
-        for record in self:
-            if not record.employee_id or not record.reward_id:
-                continue
-
-            if record.reward_id.stock <= 0:
-                raise ValidationError(
-                    "Reward stock is unavailable."
-                )
-
-            employee_points = self._get_employee_points(record.employee_id.id)
-            if employee_points < record.points_used:
-                raise ValidationError(
-                    "Employee does not have enough points to redeem this reward."
-                )
-
-    def _get_employee_points(self, employee_id):
-        csr_points = sum(
-            self.env["esg.employee.participation"]
-            .search(
-                [
-                    ("employee_id", "=", employee_id),
-                    ("approval_status", "=", "approved"),
-                ]
-            )
-            .mapped("points_earned")
-        )
-
-        challenge_points = sum(
-            self.env["esg.challenge.participation"]
-            .search(
-                [
-                    ("employee_id", "=", employee_id),
-                    ("approval_status", "=", "approved"),
-                ]
-            )
-            .mapped("points_earned")
-        )
-
-        return csr_points + challenge_points
-
     @api.model
     def create(self, vals):
-        reward_id = vals.get("reward_id")
-        if reward_id:
-            reward = self.env["esg.reward"].browse(reward_id)
+        if not vals.get("reward_id"):
+            raise ValidationError("Reward is required.")
+        
+        reward = self.env["esg.reward"].browse(vals["reward_id"])
+        
+        # Override points_used just to be safe
+        vals["points_used"] = reward.points_required
+
+        status = vals.get("status", "Pending")
+        employee_id = vals.get("employee_id")
+
+        if status == "Redeemed":
             if reward.stock <= 0:
-                raise ValidationError(
-                    "Reward stock is unavailable."
-                )
-
-            points_used = vals.get("points_used", reward.points_required)
-            if points_used < reward.points_required:
-                vals["points_used"] = reward.points_required
-
-            employee_id = vals.get("employee_id")
-            if employee_id:
-                available_points = self._get_employee_points(employee_id)
-                if available_points < vals["points_used"]:
-                    raise ValidationError(
-                        "Employee does not have enough points to redeem this reward."
-                    )
-
-            vals["status"] = "redeemed"
-            reward.write({"stock": reward.stock - 1})
+                raise ValidationError("Reward stock cannot become negative.")
+            available = self._get_available_points(employee_id)
+            if available < vals["points_used"]:
+                raise ValidationError("Employee points cannot become negative.")
+            
+            reward.stock -= 1
 
         return super().create(vals)
+
+    def write(self, vals):
+        for record in self:
+            old_status = record.status
+            new_status = vals.get("status", old_status)
+            
+            if old_status == "Redeemed" and new_status == "Cancelled":
+                record.reward_id.stock += 1
+            
+            elif old_status != "Redeemed" and new_status == "Redeemed":
+                reward = self.env["esg.reward"].browse(vals.get("reward_id", record.reward_id.id))
+                points_used = vals.get("points_used", record.points_used)
+                
+                if reward.stock <= 0:
+                    raise ValidationError("Reward stock cannot become negative.")
+                
+                available = self._get_available_points(vals.get("employee_id", record.employee_id.id))
+                if available < points_used:
+                    raise ValidationError("Employee points cannot become negative.")
+                
+                reward.stock -= 1
+                
+        return super().write(vals)

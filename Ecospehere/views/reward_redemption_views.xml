@@ -21,21 +21,24 @@
         <field name="arch" type="xml">
             <form>
                 <sheet>
-
                     <group>
                         <field name="employee_id"/>
                         <field name="reward_id"/>
                     </group>
-
                     <group>
                         <field name="points_used"/>
                         <field name="redemption_date"/>
                         <field name="status"/>
                     </group>
-
                 </sheet>
             </form>
         </field>
+    </record>
+
+    <record id="action_esg_reward_redemption" model="ir.actions.act_window">
+        <field name="name">Reward Redemptions</field>
+        <field name="res_model">esg.reward.redemption</field>
+        <field name="view_mode">tree,form</field>
     </record>
 
 </odoo>
