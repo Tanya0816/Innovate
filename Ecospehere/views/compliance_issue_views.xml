@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <record id="view_compliance_issue_tree" model="ir.ui.view">
+        <field name="name">esg.compliance.issue.tree</field>
+        <field name="model">esg.compliance.issue</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="issue_code"/>
+                <field name="name"/>
+                <field name="department_id"/>
+                <field name="policy_id"/>
+                <field name="audit_id"/>
+                <field name="severity"/>
+                <field name="status"/>
+                <field name="issue_date"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_compliance_issue_form" model="ir.ui.view">
+        <field name="name">esg.compliance.issue.form</field>
+        <field name="model">esg.compliance.issue</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+
+                    <group>
+                        <field name="issue_code"/>
+                        <field name="name"/>
+                    </group>
+
+                    <group>
+                        <field name="audit_id"/>
+                        <field name="department_id"/>
+                        <field name="policy_id"/>
+                    </group>
+
+                    <group>
+                        <field name="severity"/>
+                        <field name="status"/>
+                        <field name="issue_date"/>
+                        <field name="resolution_date"/>
+                    </group>
+
+                    <group>
+                        <field name="description"/>
+                        <field name="corrective_action"/>
+                    </group>
+
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+</odoo>

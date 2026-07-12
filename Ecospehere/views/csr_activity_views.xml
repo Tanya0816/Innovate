@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <record id="view_csr_activity_tree" model="ir.ui.view">
+        <field name="name">esg.csr.activity.tree</field>
+        <field name="model">esg.csr.activity</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="title"/>
+                <field name="department_id"/>
+                <field name="category_id"/>
+                <field name="activity_date"/>
+                <field name="points"/>
+                <field name="status"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_csr_activity_form" model="ir.ui.view">
+        <field name="name">esg.csr.activity.form</field>
+        <field name="model">esg.csr.activity</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+
+                    <group>
+                        <field name="title"/>
+                        <field name="department_id"/>
+                        <field name="category_id"/>
+                    </group>
+
+                    <group>
+                        <field name="activity_date"/>
+                        <field name="location"/>
+                    </group>
+
+                    <group>
+                        <field name="points"/>
+                        <field name="status"/>
+                    </group>
+
+                    <group>
+                        <field name="description"/>
+                    </group>
+
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+</odoo>

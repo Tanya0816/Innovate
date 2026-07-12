@@ -3,3 +3,15 @@ from . import category
 from . import emission_factor
 from . import product_esg_profile
 from . import environment_goal
+from . import policy
+from . import challenge
+from . import badge
+from . import reward
+from . import settings
+from . import carbon_transaction
+from . import csr_activity
+from . import employee_participation
+from . import policy_acknowledgement
+from . import audit
+from . import compliance_issue
+from . import department_score

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <record id="view_audit_tree" model="ir.ui.view">
+        <field name="name">esg.audit.tree</field>
+        <field name="model">esg.audit</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="audit_code"/>
+                <field name="name"/>
+                <field name="department_id"/>
+                <field name="policy_id"/>
+                <field name="auditor_id"/>
+                <field name="audit_date"/>
+                <field name="status"/>
+                <field name="score"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_audit_form" model="ir.ui.view">
+        <field name="name">esg.audit.form</field>
+        <field name="model">esg.audit</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+
+                    <group>
+                        <field name="audit_code"/>
+                        <field name="name"/>
+                    </group>
+
+                    <group>
+                        <field name="department_id"/>
+                        <field name="policy_id"/>
+                    </group>
+
+                    <group>
+                        <field name="auditor_id"/>
+                        <field name="audit_date"/>
+                        <field name="status"/>
+                        <field name="score"/>
+                    </group>
+
+                    <group>
+                        <field name="findings"/>
+                    </group>
+
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+</odoo>

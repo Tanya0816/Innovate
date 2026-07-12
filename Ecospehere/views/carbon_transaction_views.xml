@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <record id="view_carbon_transaction_tree" model="ir.ui.view">
+        <field name="name">esg.carbon.transaction.tree</field>
+        <field name="model">esg.carbon.transaction</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="reference"/>
+                <field name="department_id"/>
+                <field name="source_type"/>
+                <field name="quantity"/>
+                <field name="emission"/>
+                <field name="transaction_date"/>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_carbon_transaction_form" model="ir.ui.view">
+        <field name="name">esg.carbon.transaction.form</field>
+        <field name="model">esg.carbon.transaction</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="reference"/>
+                        <field name="transaction_date"/>
+                        <field name="source_type"/>
+                    </group>
+                    <group>
+                        <field name="department_id"/>
+                        <field name="product_id"/>
+                        <field name="emission_factor_id"/>
+                    </group>
+                    <group>
+                        <field name="quantity"/>
+                        <field name="unit"/>
+                        <field name="emission"/>
+                    </group>
+                    <group>
+                        <field name="remarks"/>
+                        <field name="state"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+</odoo>

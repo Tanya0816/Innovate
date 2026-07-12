@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <record id="view_badge_tree" model="ir.ui.view">
+        <field name="name">esg.badge.tree</field>
+        <field name="model">esg.badge</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="points"/>
+                <field name="active"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_badge_form" model="ir.ui.view">
+        <field name="name">esg.badge.form</field>
+        <field name="model">esg.badge</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="points"/>
+                        <field name="active"/>
+                    </group>
+                    <group>
+                        <field name="description"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+</odoo>

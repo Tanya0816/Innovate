@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <record id="view_reward_tree" model="ir.ui.view">
+        <field name="name">esg.reward.tree</field>
+        <field name="model">esg.reward</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="points_required"/>
+                <field name="stock"/>
+                <field name="status"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_reward_form" model="ir.ui.view">
+        <field name="name">esg.reward.form</field>
+        <field name="model">esg.reward</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+
+                    <group>
+                        <field name="name"/>
+                        <field name="points_required"/>
+                    </group>
+
+                    <group>
+                        <field name="stock"/>
+                        <field name="status"/>
+                    </group>
+
+                    <group>
+                        <field name="description"/>
+                    </group>
+
+                    <group>
+                        <field name="active"/>
+                    </group>
+
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+</odoo>
