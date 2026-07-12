@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <record id="view_emission_factor_tree" model="ir.ui.view">
+        <field name="name">esg.emission.factor.tree</field>
+        <field name="model">esg.emission.factor</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="source_type"/>
+                <field name="unit"/>
+                <field name="emission_factor"/>
+                <field name="active"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_emission_factor_form" model="ir.ui.view">
+        <field name="name">esg.emission.factor.form</field>
+        <field name="model">esg.emission.factor</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="source_type"/>
+                        <field name="unit"/>
+                        <field name="emission_factor"/>
+                        <field name="description"/>
+                        <field name="active"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+</odoo>

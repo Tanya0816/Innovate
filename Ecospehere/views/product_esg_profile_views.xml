@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <record id="view_product_profile_tree" model="ir.ui.view">
+        <field name="name">esg.product.profile.tree</field>
+        <field name="model">esg.product.profile</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="product_name"/>
+                <field name="product_code"/>
+                <field name="category_id"/>
+                <field name="emission_factor_id"/>
+                <field name="recyclable"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_product_profile_form" model="ir.ui.view">
+        <field name="name">esg.product.profile.form</field>
+        <field name="model">esg.product.profile</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="product_name"/>
+                        <field name="product_code"/>
+                        <field name="category_id"/>
+                        <field name="emission_factor_id"/>
+                        <field name="recyclable"/>
+                        <field name="description"/>
+                        <field name="active"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+</odoo>

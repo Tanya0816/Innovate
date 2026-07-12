@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <record id="view_department_score_tree" model="ir.ui.view">
+        <field name="name">esg.department.score.tree</field>
+        <field name="model">esg.department.score</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="department_id"/>
+                <field name="environmental_score"/>
+                <field name="social_score"/>
+                <field name="governance_score"/>
+                <field name="total_score"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_department_score_form" model="ir.ui.view">
+        <field name="name">esg.department.score.form</field>
+        <field name="model">esg.department.score</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="department_id"/>
+                    </group>
+                    <group>
+                        <field name="environmental_score"/>
+                        <field name="social_score"/>
+                        <field name="governance_score"/>
+                        <field name="total_score" readonly="1"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_esg_department_score" model="ir.actions.act_window">
+        <field name="name">Department Scores</field>
+        <field name="res_model">esg.department.score</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+</odoo>

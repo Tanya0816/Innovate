@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <record id="view_policy_acknowledgement_tree" model="ir.ui.view">
+        <field name="name">esg.policy.acknowledgement.tree</field>
+        <field name="model">esg.policy.acknowledgement</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="employee_id"/>
+                <field name="policy_id"/>
+                <field name="acknowledgement_date"/>
+                <field name="status"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_policy_acknowledgement_form" model="ir.ui.view">
+        <field name="name">esg.policy.acknowledgement.form</field>
+        <field name="model">esg.policy.acknowledgement</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+
+                    <group>
+                        <field name="employee_id"/>
+                        <field name="policy_id"/>
+                    </group>
+
+                    <group>
+                        <field name="acknowledgement_date"/>
+                        <field name="status"/>
+                    </group>
+
+                    <group>
+                        <field name="remarks"/>
+                    </group>
+
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+</odoo>

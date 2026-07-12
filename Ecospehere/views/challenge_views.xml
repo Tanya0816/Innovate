@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <record id="view_challenge_tree" model="ir.ui.view">
+        <field name="name">esg.challenge.tree</field>
+        <field name="model">esg.challenge</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="title"/>
+                <field name="category_id"/>
+                <field name="points"/>
+                <field name="difficulty"/>
+                <field name="deadline"/>
+                <field name="status"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_challenge_form" model="ir.ui.view">
+        <field name="name">esg.challenge.form</field>
+        <field name="model">esg.challenge</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+
+                    <group>
+                        <field name="title"/>
+                        <field name="category_id"/>
+                    </group>
+
+                    <group>
+                        <field name="points"/>
+                        <field name="difficulty"/>
+                    </group>
+
+                    <group>
+                        <field name="deadline"/>
+                        <field name="status"/>
+                    </group>
+
+                    <group>
+                        <field name="evidence_required"/>
+                    </group>
+
+                    <group>
+                        <field name="description"/>
+                    </group>
+
+                    <group>
+                        <field name="active"/>
+                    </group>
+
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+</odoo>
