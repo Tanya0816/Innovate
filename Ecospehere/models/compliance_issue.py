@@ -1,5 +1,3 @@
-from datetime import date
-
 from odoo import api, fields, models
 from odoo.exceptions import ValidationError
 
@@ -7,16 +5,11 @@ from odoo.exceptions import ValidationError
 class ESGComplianceIssue(models.Model):
     _name = "esg.compliance.issue"
     _description = "Compliance Issue"
-    _rec_name = "issue_code"
-    _order = "issue_date desc"
+    _rec_name = "title"
+    _order = "due_date asc"
 
-    issue_code = fields.Char(
-        string="Issue Code",
-        required=True,
-    )
-
-    name = fields.Char(
-        string="Issue Title",
+    title = fields.Char(
+        string="Title",
         required=True,
     )
 
@@ -24,21 +17,7 @@ class ESGComplianceIssue(models.Model):
         "esg.audit",
         string="Audit",
         required=True,
-        ondelete="restrict",
-    )
-
-    department_id = fields.Many2one(
-        "esg.department",
-        string="Department",
-        required=True,
-        ondelete="restrict",
-    )
-
-    policy_id = fields.Many2one(
-        "esg.policy",
-        string="Policy",
-        required=True,
-        ondelete="restrict",
+        ondelete="cascade",
     )
 
     severity = fields.Selection(
@@ -48,24 +27,8 @@ class ESGComplianceIssue(models.Model):
             ("high", "High"),
             ("critical", "Critical"),
         ],
+        string="Severity",
         default="medium",
-        required=True,
-    )
-
-    status = fields.Selection(
-        [
-            ("open", "Open"),
-            ("in_progress", "In Progress"),
-            ("resolved", "Resolved"),
-            ("closed", "Closed"),
-        ],
-        default="open",
-        required=True,
-    )
-
-    issue_date = fields.Date(
-        string="Issue Date",
-        default=fields.Date.today,
         required=True,
     )
 
@@ -73,52 +36,45 @@ class ESGComplianceIssue(models.Model):
         string="Description",
     )
 
-    corrective_action = fields.Text(
-        string="Corrective Action",
+    owner = fields.Many2one(
+        "hr.employee",
+        string="Owner",
+        required=True,
+        ondelete="restrict",
     )
 
-    resolution_date = fields.Date(
-        string="Resolution Date",
+    due_date = fields.Date(
+        string="Due Date",
+        required=True,
     )
 
-    active = fields.Boolean(
-        default=True,
+    status = fields.Selection(
+        [
+            ("Open", "Open"),
+            ("Closed", "Closed"),
+        ],
+        string="Status",
+        default="Open",
+        required=True,
     )
 
-    _sql_constraints = [
-        (
-            "compliance_issue_code_unique",
-            "unique(issue_code)",
-            "Compliance issue code already exists.",
-        ),
-    ]
+    is_overdue = fields.Boolean(
+        string="Overdue",
+        compute="_compute_is_overdue",
+    )
 
-    @api.constrains("name")
-    def _check_name(self):
+    @api.depends("due_date", "status")
+    def _compute_is_overdue(self):
+        today = fields.Date.today()
         for record in self:
-            if not record.name or not record.name.strip():
-                raise ValidationError("Issue title cannot be empty.")
+            record.is_overdue = bool(
+                record.status != "Closed"
+                and record.due_date
+                and record.due_date < today
+            )
 
-    @api.constrains("issue_code")
-    def _check_code(self):
+    @api.constrains("title")
+    def _check_title(self):
         for record in self:
-            if not record.issue_code or not record.issue_code.strip():
-                raise ValidationError("Issue code cannot be empty.")
-
-    @api.constrains("issue_date", "resolution_date")
-    def _check_dates(self):
-        for record in self:
-            if (
-                record.issue_date
-                and record.resolution_date
-                and record.resolution_date < record.issue_date
-            ):
-                raise ValidationError(
-                    "Resolution date cannot be earlier than issue date."
-                )
-
-    @api.constrains("issue_date")
-    def _check_issue_date(self):
-        for record in self:
-            if record.issue_date and record.issue_date > date.today():
-                raise ValidationError("Issue date cannot be in the future.")
+            if not record.title or not record.title.strip():
+                raise ValidationError("Title cannot be empty.")

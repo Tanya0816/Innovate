@@ -6,14 +6,13 @@
         <field name="model">esg.compliance.issue</field>
         <field name="arch" type="xml">
             <tree>
-                <field name="issue_code"/>
-                <field name="name"/>
-                <field name="department_id"/>
-                <field name="policy_id"/>
+                <field name="title"/>
                 <field name="audit_id"/>
                 <field name="severity"/>
+                <field name="owner"/>
+                <field name="due_date"/>
+                <field name="is_overdue"/>
                 <field name="status"/>
-                <field name="issue_date"/>
             </tree>
         </field>
     </record>
@@ -24,33 +23,31 @@
         <field name="arch" type="xml">
             <form>
                 <sheet>
-
                     <group>
-                        <field name="issue_code"/>
-                        <field name="name"/>
-                    </group>
-
-                    <group>
+                        <field name="title"/>
                         <field name="audit_id"/>
-                        <field name="department_id"/>
-                        <field name="policy_id"/>
                     </group>
-
                     <group>
                         <field name="severity"/>
                         <field name="status"/>
-                        <field name="issue_date"/>
-                        <field name="resolution_date"/>
                     </group>
-
+                    <group>
+                        <field name="owner"/>
+                        <field name="due_date"/>
+                        <field name="is_overdue" readonly="1"/>
+                    </group>
                     <group>
                         <field name="description"/>
-                        <field name="corrective_action"/>
                     </group>
-
                 </sheet>
             </form>
         </field>
+    </record>
+
+    <record id="action_esg_compliance_issue" model="ir.actions.act_window">
+        <field name="name">Compliance Issues</field>
+        <field name="res_model">esg.compliance.issue</field>
+        <field name="view_mode">tree,form</field>
     </record>
 
 </odoo>
