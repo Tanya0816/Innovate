@@ -7,12 +7,10 @@
         <field name="arch" type="xml">
             <tree>
                 <field name="department_id"/>
-                <field name="score_date"/>
-                <field name="environment_score"/>
+                <field name="environmental_score"/>
                 <field name="social_score"/>
                 <field name="governance_score"/>
-                <field name="overall_score"/>
-                <field name="status"/>
+                <field name="total_score"/>
             </tree>
         </field>
     </record>
@@ -23,27 +21,24 @@
         <field name="arch" type="xml">
             <form>
                 <sheet>
-
                     <group>
                         <field name="department_id"/>
-                        <field name="score_date"/>
                     </group>
-
                     <group>
-                        <field name="environment_score"/>
+                        <field name="environmental_score"/>
                         <field name="social_score"/>
                         <field name="governance_score"/>
-                        <field name="overall_score" readonly="1"/>
+                        <field name="total_score" readonly="1"/>
                     </group>
-
-                    <group>
-                        <field name="status"/>
-                        <field name="remarks"/>
-                    </group>
-
                 </sheet>
             </form>
         </field>
+    </record>
+
+    <record id="action_esg_department_score" model="ir.actions.act_window">
+        <field name="name">Department Scores</field>
+        <field name="res_model">esg.department.score</field>
+        <field name="view_mode">tree,form</field>
     </record>
 
 </odoo>
