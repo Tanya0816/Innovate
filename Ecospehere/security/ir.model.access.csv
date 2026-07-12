@@ -1,2 +1,5 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 access_esg_department,esg.department,model_esg_department,,1,1,1,1
+access_esg_emission_factor,esg.emission.factor,model_esg_emission_factor,,1,1,1,1
+access_esg_product_profile,esg.product.profile,model_esg_product_esg_profile,,1,1,1,1
+access_esg_environment_goal,esg.environment.goal,model_esg_environment_goal,,1,1,1,1
