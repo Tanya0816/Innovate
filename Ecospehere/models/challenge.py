@@ -70,6 +70,12 @@ class ESGChallenge(models.Model):
         default=True,
     )
 
+    participation_ids = fields.One2many(
+        "esg.challenge.participation",
+        "challenge_id",
+        string="Participations",
+    )
+
     _sql_constraints = [
         (
             "challenge_title_unique",

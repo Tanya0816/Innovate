@@ -43,6 +43,12 @@ class ESGReward(models.Model):
         default=True,
     )
 
+    redemption_ids = fields.One2many(
+        "esg.reward.redemption",
+        "reward_id",
+        string="Redemptions",
+    )
+
     _sql_constraints = [
         (
             "reward_name_unique",
