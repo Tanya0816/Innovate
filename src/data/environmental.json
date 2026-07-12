@@ -1,0 +1,134 @@
+{
+  "emissionFactors": [
+    {
+      "id": 1,
+      "source": "Electricity (Grid)",
+      "scope": "Scope 2",
+      "factor": "0.385 kg CO2e/kWh",
+      "category": "Energy",
+      "region": "North America",
+      "unit": "kWh",
+      "status": "Active"
+    },
+    {
+      "id": 2,
+      "source": "Natural Gas",
+      "scope": "Scope 1",
+      "factor": "2.03 kg CO2e/m³",
+      "category": "Stationary Combustion",
+      "region": "Global",
+      "unit": "m³",
+      "status": "Active"
+    },
+    {
+      "id": 3,
+      "source": "Diesel Fuel",
+      "scope": "Scope 1",
+      "factor": "2.68 kg CO2e/L",
+      "category": "Mobile Combustion",
+      "region": "Europe",
+      "unit": "L",
+      "status": "Active"
+    },
+    {
+      "id": 4,
+      "source": "Air Travel",
+      "scope": "Scope 3",
+      "factor": "0.115 kg CO2e/km",
+      "category": "Business Travel",
+      "region": "Global",
+      "unit": "km",
+      "status": "Active"
+    }
+  ],
+  "productEsg": [
+    {
+      "id": 1,
+      "name": "EcoPack Pro",
+      "category": "Packaging",
+      "carbonFootprint": 1.2,
+      "esgScore": 92,
+      "complianceStatus": "Compliant",
+      "progressIndicator": 95
+    },
+    {
+      "id": 2,
+      "name": "FlexiBox",
+      "category": "Packaging",
+      "carbonFootprint": 2.8,
+      "esgScore": 78,
+      "complianceStatus": "Pending Review",
+      "progressIndicator": 70
+    },
+    {
+      "id": 3,
+      "name": "GreenLite Container",
+      "category": "Shipping",
+      "carbonFootprint": 12.4,
+      "esgScore": 85,
+      "complianceStatus": "Compliant",
+      "progressIndicator": 85
+    }
+  ],
+  "carbonTransactions": [
+    {
+      "id": 1,
+      "txnId": "Txn-1024",
+      "project": "Amazon Reforestation",
+      "type": "Buy",
+      "amount": 500,
+      "cost": 7500,
+      "date": "2026-06-15",
+      "status": "Approved"
+    },
+    {
+      "id": 2,
+      "txnId": "Txn-1025",
+      "project": "Wind Farm India",
+      "type": "Buy",
+      "amount": 250,
+      "cost": 3750,
+      "date": "2026-07-02",
+      "status": "Approved"
+    },
+    {
+      "id": 3,
+      "txnId": "Txn-1026",
+      "project": "Solar Cookers Kenya",
+      "type": "Buy",
+      "amount": 100,
+      "cost": 1800,
+      "date": "2026-07-10",
+      "status": "Pending"
+    }
+  ],
+  "goals": [
+    {
+      "id": 1,
+      "name": "Reduce Fleet Emissions",
+      "department": "Logistics",
+      "target": 450,
+      "current": 180,
+      "deadline": "2026-12-31",
+      "status": "Active"
+    },
+    {
+      "id": 2,
+      "name": "Cut Packaging Waste",
+      "department": "Manufacturing",
+      "target": 200,
+      "current": 180,
+      "deadline": "2026-06-30",
+      "status": "On Track"
+    },
+    {
+      "id": 3,
+      "name": "Offsite Energy Shift",
+      "department": "Corporate",
+      "target": 500,
+      "current": 150,
+      "deadline": "2026-10-15",
+      "status": "Behind Plan"
+    }
+  ]
+}
