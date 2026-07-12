@@ -6,14 +6,13 @@
         <field name="model">esg.audit</field>
         <field name="arch" type="xml">
             <tree>
-                <field name="audit_code"/>
-                <field name="name"/>
+                <field name="audit_name"/>
                 <field name="department_id"/>
-                <field name="policy_id"/>
-                <field name="auditor_id"/>
+                <field name="auditor"/>
+                <field name="audit_type"/>
                 <field name="audit_date"/>
+                <field name="severity"/>
                 <field name="status"/>
-                <field name="score"/>
             </tree>
         </field>
     </record>
@@ -24,31 +23,31 @@
         <field name="arch" type="xml">
             <form>
                 <sheet>
-
                     <group>
-                        <field name="audit_code"/>
-                        <field name="name"/>
+                        <field name="audit_name"/>
+                        <field name="audit_type"/>
                     </group>
-
                     <group>
                         <field name="department_id"/>
-                        <field name="policy_id"/>
+                        <field name="auditor"/>
                     </group>
-
                     <group>
-                        <field name="auditor_id"/>
                         <field name="audit_date"/>
+                        <field name="severity"/>
                         <field name="status"/>
-                        <field name="score"/>
                     </group>
-
                     <group>
-                        <field name="findings"/>
+                        <field name="description"/>
                     </group>
-
                 </sheet>
             </form>
         </field>
+    </record>
+
+    <record id="action_esg_audit" model="ir.actions.act_window">
+        <field name="name">Audits</field>
+        <field name="res_model">esg.audit</field>
+        <field name="view_mode">tree,form</field>
     </record>
 
 </odoo>
