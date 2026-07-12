@@ -43,8 +43,4 @@ a new one — just add your entries to the existing `assets` dict under the
 },
 ```
 
-Load order matters: shared components must load before the dashboard
-component that consumes them (Owl resolves imports at build time via
-`/** @odoo-module **/`, so JS import order in code matters more than
-asset list order — but keep XML templates listed before the JS that
-registers the component using them, per Odoo convention).
+

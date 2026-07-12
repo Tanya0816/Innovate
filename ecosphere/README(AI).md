@@ -1,6 +1,6 @@
-# Developer 4 — Dashboard, AI & Core
+# Dashboard, AI & Core
 
-## Folder structure (only the parts you own)
+## Folder structure 
 
 ```
 ecosphere/
