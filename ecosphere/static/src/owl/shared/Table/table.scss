@@ -1,0 +1,9 @@
+.o_eco_table {
+    width: 100%;
+    border-collapse: collapse;
+
+    th, td { padding: 10px 12px; text-align: left; border-bottom: 1px solid #eee; }
+    th { font-size: 12px; text-transform: uppercase; color: #6b7280; }
+    tbody tr { cursor: pointer; }
+    tbody tr:hover { background: #f7faf7; }
+}

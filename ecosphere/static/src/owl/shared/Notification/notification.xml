@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <t t-name="ecosphere.NotificationBell" owl="1">
+        <div class="o_eco_notif_bell">
+            <button class="o_eco_notif_toggle" t-on-click="toggle">
+                <i class="fa fa-bell"/>
+                <span t-if="unreadCount" class="o_eco_notif_count" t-esc="unreadCount"/>
+            </button>
+            <div t-if="state.open" class="o_eco_notif_dropdown">
+                <div class="o_eco_notif_dropdown_header">
+                    <span>Notifications</span>
+                    <a href="#" t-on-click.prevent="markAllRead">Mark all read</a>
+                </div>
+                <div t-if="!state.items.length" class="o_eco_notif_empty">You're all caught up.</div>
+                <t t-foreach="state.items" t-as="item" t-key="item.id">
+                    <div t-attf-class="o_eco_notif_item o_eco_notif_item--{{item.category}}">
+                        <strong t-esc="item.title"/>
+                        <p t-esc="item.message"/>
+                    </div>
+                </t>
+            </div>
+        </div>
+    </t>
+</templates>

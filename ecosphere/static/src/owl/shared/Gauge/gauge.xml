@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <t t-name="ecosphere.Gauge" owl="1">
+        <div class="o_eco_gauge">
+            <svg viewBox="0 0 200 110" width="200" height="110">
+                <path d="M 20 100 A 80 80 0 0 1 180 100" fill="none" stroke="#eceff1" stroke-width="16"/>
+                <path d="M 20 100 A 80 80 0 0 1 180 100" fill="none"
+                      t-att-stroke="color" stroke-width="16"
+                      stroke-linecap="round"
+                      stroke-dasharray="251.2"
+                      t-att-stroke-dashoffset="dashOffset"/>
+                <text x="100" y="90" text-anchor="middle" font-size="24" font-weight="700"
+                      t-esc="props.value"/>
+            </svg>
+            <div t-if="props.label" class="o_eco_gauge_label" t-esc="props.label"/>
+        </div>
+    </t>
+</templates>

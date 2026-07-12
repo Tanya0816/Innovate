@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <t t-name="ecosphere.ProgressBar" owl="1">
+        <div class="o_eco_progress">
+            <div t-if="props.label" class="o_eco_progress_label" t-esc="props.label"/>
+            <div class="o_eco_progress_track">
+                <div class="o_eco_progress_fill" t-attf-style="width: {{percent}}%"/>
+            </div>
+        </div>
+    </t>
+</templates>

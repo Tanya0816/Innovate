@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_notification_user,notification.user,model_notification,base.group_user,1,0,0,0
+access_notification_system,notification.system,model_notification,base.group_system,1,1,1,1
+access_department_score_user,department.score.user,model_department_score,base.group_user,1,0,0,0
+access_department_score_manager,department.score.manager,model_department_score,base.group_system,1,1,1,1

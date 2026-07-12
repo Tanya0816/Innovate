@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <t t-name="ecosphere.Button" owl="1">
+        <button t-attf-class="o_eco_btn o_eco_btn--{{props.variant}}"
+                t-att-disabled="props.disabled"
+                t-on-click="onClick">
+            <t t-esc="props.label"/>
+        </button>
+    </t>
+</templates>

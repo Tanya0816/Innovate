@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <t t-name="ecosphere.Badge" owl="1">
+        <span t-attf-class="o_eco_badge o_eco_badge--{{props.tone}}">
+            <i t-if="props.icon" t-attf-class="fa {{props.icon}} me-1"/>
+            <t t-esc="props.label"/>
+        </span>
+    </t>
+</templates>

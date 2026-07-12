@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Settings panel: AI provider + score weight configuration -->
+    <record id="view_ecosphere_settings_form" model="ir.ui.view">
+        <field name="name">ecosphere.settings.form</field>
+        <field name="model">ecosphere.settings</field>
+        <field name="inherit_id" ref="base.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[hasclass('settings')]" position="inside">
+                <div class="app_settings_block" data-string="EcoSphere" string="EcoSphere"
+                     data-key="ecosphere">
+                    <h2>AI Assistant</h2>
+                    <div class="row mt16 o_settings_container">
+                        <div class="col-12 col-lg-6 o_setting_box">
+                            <div class="o_setting_right_pane">
+                                <label for="ai_provider"/>
+                                <field name="ai_provider"/>
+                                <label for="ai_api_key"/>
+                                <field name="ai_api_key" password="True"/>
+                                <label for="ai_model"/>
+                                <field name="ai_model"/>
+                            </div>
+                        </div>
+                    </div>
+                    <h2>ESG Score Weights</h2>
+                    <div class="row mt16 o_settings_container">
+                        <div class="col-12 col-lg-6 o_setting_box">
+                            <div class="o_setting_right_pane">
+                                <field name="esg_weight_environment"/>
+                                <field name="esg_weight_social"/>
+                                <field name="esg_weight_governance"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </xpath>
+        </field>
+    </record>
+</odoo>

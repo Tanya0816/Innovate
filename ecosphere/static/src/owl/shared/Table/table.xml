@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <t t-name="ecosphere.Table" owl="1">
+        <table class="o_eco_table">
+            <thead>
+                <tr>
+                    <t t-foreach="props.columns" t-as="col" t-key="col.key">
+                        <th t-esc="col.label"/>
+                    </t>
+                </tr>
+            </thead>
+            <tbody>
+                <t t-foreach="props.rows" t-as="row" t-key="row_index">
+                    <tr t-on-click="() => this.onRowClick(row)">
+                        <t t-foreach="props.columns" t-as="col" t-key="col.key">
+                            <td t-esc="row[col.key]"/>
+                        </t>
+                    </tr>
+                </t>
+            </tbody>
+        </table>
+    </t>
+</templates>

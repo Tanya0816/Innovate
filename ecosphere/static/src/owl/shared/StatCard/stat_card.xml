@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <t t-name="ecosphere.StatCard" owl="1">
+        <div t-attf-class="o_stat_card o_stat_card--{{props.tone}}">
+            <span class="o_stat_card_label" t-esc="props.label"/>
+            <span class="o_stat_card_value" t-esc="props.value"/>
+            <span t-if="props.badge" class="o_stat_card_badge" t-esc="props.badge"/>
+        </div>
+    </t>
+</templates>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <t t-name="ecosphere.ExecutiveDashboard" owl="1">
+        <div class="o_ecosphere_dashboard">
+            <Loading t-if="state.loading"/>
+            <div t-elif="state.error" class="alert alert-danger" t-esc="state.error"/>
+            <div t-else="">
+                <div class="o_ecosphere_kpi_row">
+                    <StatCard label="'Overall ESG Score'"
+                              value="state.summary.overall_score"
+                              badge="state.summary.grade"
+                              tone="'primary'"/>
+                    <StatCard label="'Environment'" value="state.summary.environment_score" tone="'success'"/>
+                    <StatCard label="'Social'" value="state.summary.social_score" tone="'info'"/>
+                    <StatCard label="'Governance'" value="state.summary.governance_score" tone="'warning'"/>
+                </div>
+
+                <div class="o_ecosphere_gauge_row">
+                    <Gauge label="'Overall Health'" value="state.summary.overall_score" max="100"/>
+                </div>
+
+                <h3>Department Leaderboard</h3>
+                <Table columns="departmentTableColumns"
+                       rows="state.departments"
+                       onRowClick.bind="loadInsightsForDepartment"/>
+
+                <div t-if="state.aiInsights.length" class="o_ecosphere_ai_insights">
+                    <h4>AI Recommendations</h4>
+                    <ul>
+                        <t t-foreach="state.aiInsights" t-as="tip" t-key="tip_index">
+                            <li t-esc="tip"/>
+                        </t>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </t>
+</templates>

@@ -1,0 +1,22 @@
+.o_ecosphere_dashboard {
+    padding: 24px;
+
+    .o_ecosphere_kpi_row {
+        display: flex;
+        gap: 16px;
+        flex-wrap: wrap;
+        margin-bottom: 24px;
+    }
+
+    .o_ecosphere_gauge_row {
+        margin-bottom: 32px;
+    }
+
+    .o_ecosphere_ai_insights {
+        margin-top: 24px;
+        padding: 16px;
+        border-left: 4px solid var(--eco-primary, #2e7d32);
+        background: #f7faf7;
+        border-radius: 6px;
+    }
+}

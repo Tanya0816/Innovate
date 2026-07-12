@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <t t-name="ecosphere.Card" owl="1">
+        <div class="o_eco_card">
+            <div t-if="props.title" class="o_eco_card_header" t-esc="props.title"/>
+            <div class="o_eco_card_body">
+                <t t-slot="default"/>
+            </div>
+        </div>
+    </t>
+</templates>
