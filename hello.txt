@@ -1,0 +1,740 @@
+You are continuing development of the EcoSphere ESG Management Platform.
+
+Read this entire prompt carefully before doing anything.
+
+Do not redesign the project.
+
+Everything below has already been discussed and finalized.
+
+=========================================================
+PROJECT OVERVIEW
+=========================================================
+
+Project Name:
+EcoSphere
+
+Purpose:
+Enterprise ESG (Environmental, Social, Governance) Management Platform
+
+Goal:
+Build a fully working hackathon MVP that is clean, deployable, production-inspired, easy to navigate, and easy for judges to understand.
+
+The MVP must have:
+
+• No placeholders
+• Working CRUD
+• Proper database normalization
+• Clean Odoo architecture
+• Simple implementation
+• No unnecessary abstractions
+• No overengineering
+• No unnecessary third-party libraries
+
+=========================================================
+MY ROLE
+=========================================================
+
+I am NOT the backend developer.
+
+I am Developer 2.
+
+Role:
+
+Database Architect
+Database Engineer
+
+I own
+
+• Database schema
+• Relationships
+• Constraints
+• Views
+• Access Control
+• Seed Data
+• Data Documentation
+
+The backend developer will implement business logic using MY schema.
+
+=========================================================
+TECH STACK
+=========================================================
+
+Framework
+
+Odoo 17
+
+Language
+
+Python
+
+Database
+
+PostgreSQL (Odoo ORM)
+
+Frontend
+
+Odoo XML Views
+
+Deployment
+
+Later
+
+Docker
+
+Not required
+
+Use ONLY
+
+• Odoo ORM
+• Python Standard Library
+• Odoo XML Views
+
+Avoid
+
+• External Services
+• FastAPI
+• Django
+• Microservices
+• AI Libraries
+• Docker-specific implementations
+
+=========================================================
+PROJECT STRUCTURE
+=========================================================
+
+Repository
+
+Ecospehere/
+
+├── models/
+├── views/
+├── security/
+├── data/
+├── static/
+├── __init__.py
+├── __manifest__.py
+
+Only work inside the Odoo module.
+
+=========================================================
+PROJECT ARCHITECTURE
+=========================================================
+
+Business Workflow
+
+Master Configuration
+        │
+        ▼
+Departments
+Categories
+Emission Factors
+Products
+Goals
+Policies
+Challenges
+        │
+        ▼
+Daily Business Operations
+
+Purchase
+
+Manufacturing
+
+Expenses
+
+Fleet
+        │
+        ▼
+Carbon Transactions
+        │
+        ▼
+Employee Participation
+Challenge Participation
+Policy Acknowledgement
+Audits
+Compliance Issues
+        │
+        ▼
+Environmental Score
+
+Social Score
+
+Governance Score
+        │
+        ▼
+Department Total Score
+        │
+        ▼
+Overall ESG Score
+        │
+        ▼
+Dashboard
+Reports
+
+=========================================================
+DATABASE DESIGN PRINCIPLES
+=========================================================
+
+Database First
+
+Everything should be normalized.
+
+Use proper relations.
+
+Avoid duplicated data.
+
+Business logic should remain minimal.
+
+Use
+
+Many2one
+
+One2many
+
+Many2many
+
+where appropriate.
+
+Every model must contain
+
+_name
+
+_description
+
+_rec_name
+
+_order
+
+Use
+
+_sql_constraints
+
+Use
+
+@api.constrains
+
+Use
+
+Selection fields
+
+Use proper foreign keys.
+
+=========================================================
+MASTER DATA
+=========================================================
+
+Completed
+
+Department
+
+Category
+
+Emission Factor
+
+Product ESG Profile
+
+Environmental Goal
+
+Policy
+
+Challenge
+
+Badge
+
+Reward
+
+=========================================================
+TRANSACTIONAL MODELS
+=========================================================
+
+Completed
+
+Carbon Transaction
+
+CSR Activity
+
+Employee Participation
+
+Policy Acknowledgement
+
+=========================================================
+REMAINING MODELS
+=========================================================
+
+Governance
+
+Audit
+
+Compliance Issue
+
+Gamification
+
+Challenge Participation
+
+Reward Redemption
+
+Analytics
+
+Department Score
+
+=========================================================
+MODEL ORDER
+=========================================================
+
+Complete ONLY in this order
+
+1 Audit
+
+2 Compliance Issue
+
+3 Challenge Participation
+
+4 Reward Redemption
+
+5 Department Score
+
+Never change this order unless absolutely required.
+
+=========================================================
+BUSINESS RULES
+=========================================================
+
+Carbon Transaction
+
+Emission
+
+=
+
+Quantity
+
+×
+
+Emission Factor
+
+Automatically computed
+
+-----------------------------------------------------
+
+CSR Participation
+
+Employee
+
+↓
+
+CSR Activity
+
+↓
+
+Approval
+
+↓
+
+Points Assigned
+
+-----------------------------------------------------
+
+Challenge Participation
+
+Employee
+
+↓
+
+Challenge
+
+↓
+
+Evidence
+
+↓
+
+Approval
+
+↓
+
+Points Assigned
+
+-----------------------------------------------------
+
+Reward Redemption
+
+Employee Points
+
+>=
+
+Reward Points
+
+Reward Stock
+
+>
+
+0
+
+Redeem
+
+↓
+
+Deduct Stock
+
+↓
+
+Deduct Points
+
+-----------------------------------------------------
+
+Compliance Issue
+
+Owner required
+
+Due Date required
+
+If
+
+Status != Closed
+
+AND
+
+Due Date < Today
+
+↓
+
+Overdue Flag
+
+-----------------------------------------------------
+
+Department Score
+
+Environmental
+
+40%
+
+Social
+
+30%
+
+Governance
+
+30%
+
+Total Score
+
+=
+
+0.4 Environmental
+
++
+
+0.3 Social
+
++
+
+0.3 Governance
+
+=========================================================
+ACCESS CONTROL
+=========================================================
+
+Every model must include
+
+Security Entry
+
+Tree View
+
+Form View
+
+Manifest Registration
+
+Init Registration
+
+=========================================================
+CODE STYLE
+=========================================================
+
+Match the existing project.
+
+Do NOT rename models.
+
+Do NOT redesign.
+
+Do NOT introduce helper services.
+
+Do NOT create repositories.
+
+Do NOT create controllers.
+
+Do NOT create APIs.
+
+Do NOT create business services.
+
+Do NOT create dashboards.
+
+Only the database layer.
+
+=========================================================
+VALIDATION
+=========================================================
+
+Every model should include
+
+SQL Constraints
+
+Validation
+
+Meaningful error messages
+
+No duplicate records
+
+Foreign key validation
+
+Required field validation
+
+=========================================================
+DOCUMENTATION
+=========================================================
+
+After every completed model provide
+
+Files Created
+
+Files Modified
+
+Relationships
+
+Validation Summary
+
+Why this design was chosen
+
+=========================================================
+GIT WORKFLOW
+=========================================================
+
+Branch
+
+developer
+
+Never work on main.
+
+Never commit automatically.
+
+Workflow
+
+Code
+
+↓
+
+Run syntax validation
+
+↓
+
+Show changes
+
+↓
+
+Wait
+
+↓
+
+I review manually
+
+↓
+
+Only after I explicitly type
+
+APPROVE COMMIT
+
+↓
+
+Commit
+
+↓
+
+Push developer branch
+
+Maximum commits
+
+10
+
+Suggested commits
+
+Commit 1
+
+Governance Database
+
+Commit 2
+
+Gamification Database
+
+Commit 3
+
+Analytics Database
+
+Commit 4
+
+Views
+
+Commit 5
+
+Security
+
+Commit 6
+
+Validation
+
+Commit 7
+
+Seed Data
+
+Commit 8
+
+Testing
+
+Commit 9
+
+Bug Fixes
+
+Commit 10
+
+Final Database
+
+=========================================================
+CURRENT PROJECT STATUS
+=========================================================
+
+Master Configuration
+
+100%
+
+Environmental
+
+100%
+
+Social
+
+100%
+
+Governance
+
+25%
+
+Gamification
+
+50%
+
+Analytics
+
+0%
+
+=========================================================
+PHASES
+=========================================================
+
+Phase 1
+
+Foundation
+
+✔ Folder Structure
+
+✔ Manifest
+
+✔ Security
+
+✔ Base Models
+
+Completed
+
+---------------------------------------
+
+Phase 2
+
+Master Configuration
+
+Completed
+
+---------------------------------------
+
+Phase 3
+
+Environmental
+
+Completed
+
+---------------------------------------
+
+Phase 4
+
+Social
+
+Completed
+
+---------------------------------------
+
+Phase 5
+
+Governance
+
+In Progress
+
+Policy Acknowledgement Completed
+
+Audit Pending
+
+Compliance Issue Pending
+
+---------------------------------------
+
+Phase 6
+
+Gamification
+
+Challenge Completed
+
+Badge Completed
+
+Reward Completed
+
+Challenge Participation Pending
+
+Reward Redemption Pending
+
+---------------------------------------
+
+Phase 7
+
+Analytics
+
+Department Score
+
+Pending
+
+=========================================================
+EXPECTED RESPONSE FORMAT
+=========================================================
+
+Before coding
+
+Analyze the existing repository.
+
+Tell me
+
+Current status
+
+Dependency graph
+
+Files to create
+
+Files to modify
+
+Relationship impact
+
+Implementation plan
+
+Then create ONLY ONE model.
+
+Stop.
+
+Wait for my review.
+
+Never continue automatically.
+
+Never commit automatically.
+
+Never redesign the architecture.
