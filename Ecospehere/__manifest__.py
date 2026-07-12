@@ -26,7 +26,10 @@
         "views/policy_acknowledgement_views.xml",
         "views/audit_views.xml",
         "views/compliance_issue_views.xml",
-        "views/department_score_views.xml"
+        "views/department_score_views.xml",
+        "views/challenge_participation_views.xml",
+        "views/reward_redemption_views.xml",
+        "views/leaderboard_views.xml"
     ],
     "installable": true,
     "application": true

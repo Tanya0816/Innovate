@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <record id="view_reward_redemption_tree" model="ir.ui.view">
+        <field name="name">esg.reward.redemption.tree</field>
+        <field name="model">esg.reward.redemption</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="employee_id"/>
+                <field name="reward_id"/>
+                <field name="points_used"/>
+                <field name="redemption_date"/>
+                <field name="status"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_reward_redemption_form" model="ir.ui.view">
+        <field name="name">esg.reward.redemption.form</field>
+        <field name="model">esg.reward.redemption</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+
+                    <group>
+                        <field name="employee_id"/>
+                        <field name="reward_id"/>
+                    </group>
+
+                    <group>
+                        <field name="points_used"/>
+                        <field name="redemption_date"/>
+                        <field name="status"/>
+                    </group>
+
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+</odoo>

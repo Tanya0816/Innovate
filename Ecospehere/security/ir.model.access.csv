@@ -14,3 +14,6 @@ access_esg_policy_acknowledgement,esg.policy.acknowledgement,model_esg_policy_ac
 access_esg_audit,esg.audit,model_esg_audit,,1,1,1,1
 access_esg_compliance_issue,esg.compliance.issue,model_esg_compliance_issue,,1,1,1,1
 access_esg_department_score,esg.department.score,model_esg_department_score,,1,1,1,1
+access_esg_challenge_participation,esg.challenge.participation,model_esg_challenge_participation,,1,1,1,1
+access_esg_reward_redemption,esg.reward.redemption,model_esg_reward_redemption,,1,1,1,1
+access_esg_leaderboard,esg.leaderboard,model_esg_leaderboard,,1,1,1,1

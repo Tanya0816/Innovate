@@ -15,3 +15,6 @@ from . import policy_acknowledgement
 from . import audit
 from . import compliance_issue
 from . import department_score
+from . import challenge_participation
+from . import reward_redemption
+from . import leaderboard

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <record id="view_leaderboard_tree" model="ir.ui.view">
+        <field name="name">esg.leaderboard.tree</field>
+        <field name="model">esg.leaderboard</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="rank"/>
+                <field name="employee_id"/>
+                <field name="csr_points"/>
+                <field name="challenge_points"/>
+                <field name="total_points"/>
+            </tree>
+        </field>
+    </record>
+
+</odoo>
