@@ -1,7 +1,6 @@
 from odoo import api, fields, models
 from odoo.exceptions import ValidationError
 
-
 class ESGChallengeParticipation(models.Model):
     _name = "esg.challenge.participation"
     _description = "Challenge Participation"
@@ -24,14 +23,12 @@ class ESGChallengeParticipation(models.Model):
 
     progress = fields.Selection(
         [
-            ("started", "Started"),
-            ("in_progress", "In Progress"),
-            ("submitted", "Submitted"),
-            ("approved", "Approved"),
-            ("completed", "Completed"),
+            ("Started", "Started"),
+            ("In Progress", "In Progress"),
+            ("Completed", "Completed"),
         ],
         string="Progress",
-        default="started",
+        default="Started",
         required=True,
     )
 
@@ -40,16 +37,17 @@ class ESGChallengeParticipation(models.Model):
     )
 
     proof_filename = fields.Char(
-        string="Filename",
+        string="Proof Filename",
     )
 
     approval_status = fields.Selection(
         [
-            ("pending", "Pending"),
-            ("approved", "Approved"),
-            ("rejected", "Rejected"),
+            ("Pending", "Pending"),
+            ("Approved", "Approved"),
+            ("Rejected", "Rejected"),
         ],
-        default="pending",
+        string="Approval Status",
+        default="Pending",
         required=True,
     )
 
@@ -60,40 +58,50 @@ class ESGChallengeParticipation(models.Model):
 
     completion_date = fields.Date(
         string="Completion Date",
-        default=fields.Date.today,
     )
 
-    remarks = fields.Text()
+    remarks = fields.Text(
+        string="Remarks",
+    )
 
     _sql_constraints = [
         (
             "employee_challenge_unique",
             "unique(employee_id, challenge_id)",
-            "Employee already joined this challenge.",
+            "An employee can only participate in a challenge once.",
         ),
     ]
 
-    @api.constrains("approval_status", "proof")
-    def _check_proof(self):
+    @api.constrains("approval_status", "proof", "challenge_id")
+    def _check_proof_for_approval(self):
         for record in self:
-            if record.approval_status == "approved" and not record.proof:
-                raise ValidationError(
-                    "Proof is required before approval."
-                )
+            if (
+                record.approval_status == "Approved"
+                and record.challenge_id
+                and record.challenge_id.evidence_required
+                and not record.proof
+            ):
+                raise ValidationError("Proof is required to approve this challenge participation.")
 
-    @api.constrains("points_earned")
-    def _check_points(self):
+    def write(self, vals):
+        res = super().write(vals)
         for record in self:
-            if record.points_earned < 0:
-                raise ValidationError(
-                    "Points cannot be negative."
-                )
+            if "approval_status" in vals:
+                if record.approval_status == "Approved":
+                    record.points_earned = record.challenge_id.points
+                    record.progress = "Completed"
+                    if not record.completion_date:
+                        record.completion_date = fields.Date.today()
+                else:
+                    record.points_earned = 0
+        return res
 
-    @api.onchange("approval_status")
-    def _onchange_approval(self):
-        if self.approval_status == "approved" and self.challenge_id:
-            self.points_earned = self.challenge_id.points
-            self.progress = "completed"
-        elif self.approval_status == "rejected":
-            self.points_earned = 0
-            self.progress = "submitted"
+    @api.model
+    def create(self, vals):
+        record = super().create(vals)
+        if record.approval_status == "Approved":
+            record.points_earned = record.challenge_id.points
+            record.progress = "Completed"
+            if not record.completion_date:
+                record.completion_date = fields.Date.today()
+        return record

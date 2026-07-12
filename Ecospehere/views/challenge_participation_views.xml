@@ -22,30 +22,32 @@
         <field name="arch" type="xml">
             <form>
                 <sheet>
-
                     <group>
                         <field name="employee_id"/>
                         <field name="challenge_id"/>
                     </group>
-
                     <group>
                         <field name="progress"/>
                         <field name="approval_status"/>
                     </group>
-
                     <group>
                         <field name="proof" filename="proof_filename"/>
+                        <field name="proof_filename" invisible="1"/>
                         <field name="points_earned" readonly="1"/>
                         <field name="completion_date"/>
                     </group>
-
                     <group>
                         <field name="remarks"/>
                     </group>
-
                 </sheet>
             </form>
         </field>
+    </record>
+
+    <record id="action_esg_challenge_participation" model="ir.actions.act_window">
+        <field name="name">Challenge Participations</field>
+        <field name="res_model">esg.challenge.participation</field>
+        <field name="view_mode">tree,form</field>
     </record>
 
 </odoo>
