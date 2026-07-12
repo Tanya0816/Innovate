@@ -7,7 +7,7 @@ The platform should integrate operational data, employee participation and compl
 
 
 Core Modules:
-Environmental
-Social 
-Governance
+Environmental,
+Social,
+Governance,
 Gamification
